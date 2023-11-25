@@ -14,11 +14,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Parisienne&display=swap"
         rel="stylesheet">
 
+    <!-- Styles -->
+    @filamentStyles
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/main.js'])
 
     <!-- Icon -->
     <link rel="shortcut icon" href="{{ Vite::asset('resources/images/rose.png') }}" type="image/x-icon">
+
 </head>
 
 <body class="px-4 py-5 antialiased text-white font-lato" x-data="{ openCreateRSVPModal: false, openShareModal: false }">
@@ -75,7 +79,8 @@
 
     <!-- RSVP -->
     <div class="flex justify-center gap-2 mt-4">
-        <button type="button" @click="$store.openCreateRSVPModal.toggle()" class="px-4 py-2 uppercase bg-white rounded-3xl text-sm text-[#32214d] font-bold">rsvp</button>
+        <button type="button" @click="$store.openCreateRSVPModal.toggle()"
+            class="px-4 py-2 uppercase bg-white rounded-3xl text-sm text-[#32214d] font-bold">rsvp</button>
         <button type="button" @click="$store.openShareModal.toggle()" class="bg-white p-2 rounded-full text-[#32214d]">
             <span class="sr-only">Share</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
@@ -160,7 +165,8 @@
 
         <!-- Guestbook: Form - Submit button -->
         <div class="w-full max-w-4xl mx-auto mt-5 text-end">
-            <button type="submit" class="px-4 py-2 uppercase bg-white rounded-3xl text-sm text-[#32214d] font-bold">Submit</button>
+            <button type="submit"
+                class="px-4 py-2 uppercase bg-white rounded-3xl text-sm text-[#32214d] font-bold">Submit</button>
         </div>
     </form>
 
@@ -170,7 +176,8 @@
         <div class="splide__track">
             <div class="splide__list">
                 @for ($i = 0; $i < 5; $i++)
-                    <div class="flex flex-col items-center w-full max-w-sm gap-2 px-5 py-3 mx-auto bg-white rounded-lg splide__slide">
+                    <div
+                        class="flex flex-col items-center w-full max-w-sm gap-2 px-5 py-3 mx-auto bg-white rounded-lg splide__slide">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             class="w-16 h-16 text-gray-400">
                             <path fill-rule="evenodd"
@@ -178,14 +185,21 @@
                                 clip-rule="evenodd" />
                         </svg>
                         <h3 class="text-3xl font-parisienne text-[#32214d]">James</h3>
-                        <p class="text-center text-gray-500 line-clamp-4">Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Vitae magni id numquam, debitis repellat, necessitatibus maiores similique libero ex magnam
+                        <p class="text-center text-gray-500 line-clamp-4">Lorem ipsum dolor sit amet consectetur
+                            adipisicing
+                            elit. Vitae magni id numquam, debitis repellat, necessitatibus maiores similique libero ex
+                            magnam
                             dolores, est eum explicabo. Magnam quos, fugit placeat iusto velit modi nulla ut similique,
-                            voluptates doloremque officia pariatur esse minus sint voluptatibus illum repudiandae veniam dolores
-                            praesentium a eos necessitatibus libero fuga dolorum? Expedita commodi ullam assumenda libero,
-                            molestias eligendi nulla saepe vel ipsa porro ducimus ex, voluptatibus alias illo culpa deleniti
-                            delectus magnam dolorum similique sint, temporibus dicta et quasi consequuntur! Distinctio earum
-                            doloribus, deleniti atque perspiciatis sit, excepturi at eius dolor hic dignissimos, placeat sunt
+                            voluptates doloremque officia pariatur esse minus sint voluptatibus illum repudiandae veniam
+                            dolores
+                            praesentium a eos necessitatibus libero fuga dolorum? Expedita commodi ullam assumenda
+                            libero,
+                            molestias eligendi nulla saepe vel ipsa porro ducimus ex, voluptatibus alias illo culpa
+                            deleniti
+                            delectus magnam dolorum similique sint, temporibus dicta et quasi consequuntur! Distinctio
+                            earum
+                            doloribus, deleniti atque perspiciatis sit, excepturi at eius dolor hic dignissimos, placeat
+                            sunt
                             delectus error minus.</p>
                     </div>
                 @endfor
@@ -202,47 +216,49 @@
     <!-- Modals -->
     @include('modals.share')
     @include('modals.create-rsvp')
+    @livewire('notifications')
 
     <!-- Script -->
-  <script>
-    document.addEventListener("alpine:init", () => {
-      Alpine.store("openCreateRSVPModal", {
-        on: false,
 
-        toggle() {
-          this.on = !this.on;
-        },
-      });
+    <script>
+        document.addEventListener("alpine:init", () => {
+            Alpine.store("openCreateRSVPModal", {
+                on: false,
 
-      Alpine.store("openShareModal", {
-        on: false,
-
-        toggle() {
-          this.on = !this.on;
-        },
-      });
-
-      window.Alpine.magic('clipboard', () => subject => {
-        if (typeof navigator !== 'undefined' && navigator.clipboard) {
-          navigator.clipboard.writeText(subject)
-            .then(() => {
-            })
-            .catch(error => {
-              console.error('Error copying to clipboard:', error);
+                toggle() {
+                    this.on = !this.on;
+                },
             });
-        } else {
-          const input = document.getElementById('shareUrl');
-          input.select();
 
-          try {
-            document.execCommand('copy');
-          } catch (error) {
-            console.error(error);
-          }
-        }
-      });
-    });
-  </script>
+            Alpine.store("openShareModal", {
+                on: false,
+
+                toggle() {
+                    this.on = !this.on;
+                },
+            });
+
+            window.Alpine.magic('clipboard', () => subject => {
+                if (typeof navigator !== 'undefined' && navigator.clipboard) {
+                    navigator.clipboard.writeText(subject)
+                        .then(() => {})
+                        .catch(error => {
+                            console.error('Error copying to clipboard:', error);
+                        });
+                } else {
+                    const input = document.getElementById('shareUrl');
+                    input.select();
+
+                    try {
+                        document.execCommand('copy');
+                    } catch (error) {
+                        console.error(error);
+                    }
+                }
+            });
+        });
+    </script>
+    @filamentScripts
 </body>
 
 </html>
