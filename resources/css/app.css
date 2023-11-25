@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+[x-cloak] {
+    display: none !important;
+}
+
+body {
+    background: linear-gradient(0deg, rgba(50, 33, 77, 0.30) 0%, rgba(50, 33, 77, 0.30) 100%), url("../../resources/images/bg.png"), lightgray 50% / cover no-repeat;
+    background-repeat: repeat, no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.toz-ec-d>svg>circle {
+    fill: transparent;
+    stroke: rgba(255, 255, 255, 0.5);
+    stroke-width: 10px;
+}
+
+.toz-ec-d>svg>circle:nth-child(2) {
+    stroke: #fff;
+    stroke-dasharray: 468;
+    stroke-linecap: round;
+}
+
+.splide__arrow {
+    width: 1.2rem !important;
+}
+
+.splide__pagination {
+    bottom: -1.5em !important;
+}
+
+@media (max-width: 767px) {
+    body {
+        background-size: contain;
+        background-repeat: repeat;
+        background-position: top;
+    }
+}

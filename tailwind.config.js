@@ -13,6 +13,8 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                lato: ['Lato', ...defaultTheme.fontFamily.sans],
+                parisienne: ['Parisienne', 'cursive'],
             },
         },
     },
