@@ -30,7 +30,7 @@ body {
 }
 
 .splide__pagination {
-    bottom: -1.5em !important;
+    bottom: -1.8em !important;
 }
 
 @media (max-width: 767px) {

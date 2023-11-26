@@ -10,14 +10,4 @@ window.jQuery = $;
 
 window.$ = $;
 
-/* Guestbook Slider */
-
-new Splide(".splide", {
-    perPage: 3,
-    breakpoints: {
-        640: {
-            perPage: 1,
-        },
-    },
-    gap: '1em',
-}).mount();
+window.Splide = Splide;
