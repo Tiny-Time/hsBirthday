@@ -11,3 +11,6 @@ window.jQuery = $;
 window.$ = $;
 
 window.Splide = Splide;
+
+/* Import images and fonts. */
+import.meta.glob(["../images/**", "../fonts/**"]);
