@@ -23,6 +23,8 @@
     <!-- Icon -->
     <link rel="shortcut icon" href="{{ Vite::asset('resources/images/rose.png') }}" type="image/x-icon">
 
+    {{-- Google Recaptcha --}}
+    {!! NoCaptcha::renderJs() !!}
 </head>
 
 <body class="px-4 py-5 antialiased text-white font-lato" x-data="{ openCreateRSVPModal: false, openShareModal: false }">
@@ -162,6 +164,8 @@
             });
         });
     </script>
+
+    @stack('js')
     @filamentScripts
 </body>
 

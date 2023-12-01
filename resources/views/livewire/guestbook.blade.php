@@ -67,8 +67,18 @@
         </svg>
     </div>
 
+    <!-- Guestbook: Form - Recaptcha -->
+    <div class="text-center">
+        <div class="flex justify-center mt-3" wire:ignore>
+            {!! NoCaptcha::display(['data-callback' => 'recaptchaCallback']) !!}
+        </div>
+        @error('recaptcha')
+            <span class="mt-1 text-sm font-semibold text-pink-500 drop-shadow">{{ $message }}</span>
+        @enderror
+    </div>
+
     <!-- Guestbook: Form - Submit button -->
-    <div class="flex justify-end w-full max-w-4xl mx-auto mt-5">
+    <div class="flex justify-center w-full max-w-4xl mx-auto mt-3">
         <button type="submit"
             class="flex transition duration-150 ease-in-out px-4 py-2 uppercase bg-white shadow rounded-3xl text-sm text-[#32214d] font-bold"
             wire:target="save" wire:loading.class="cursor-not-allowed">
@@ -82,4 +92,12 @@
             </svg>
             Submit</button>
     </div>
+
+    @push('js')
+        <script>
+            window.recaptchaCallback = function(response) {
+                Livewire.dispatch('recaptchaResponse', {response: response});
+            };
+        </script>
+    @endpush
 </form>
