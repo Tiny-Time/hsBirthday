@@ -56,8 +56,6 @@ class Guestbook extends Component
             'message' => 'required|min:3|max:4294967295',
         ]);
 
-        dd($this->message);
-
         GuestbookModel::create(
             $this->only(['name', 'email', 'message'])
         );
