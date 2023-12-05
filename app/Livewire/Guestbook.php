@@ -50,9 +50,13 @@ class Guestbook extends Component
      */
     public function save()
     {
+
         $this->validate([
             'recaptcha' => 'required|captcha',
+            'message' => 'required|min:3|max:4294967295',
         ]);
+
+        dd($this->message);
 
         GuestbookModel::create(
             $this->only(['name', 'email', 'message'])

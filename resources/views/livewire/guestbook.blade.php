@@ -47,24 +47,25 @@
     </div>
 
     <!-- Guestbook: Form - Input - Textarea -->
-    <div class="relative flex flex-col w-full max-w-4xl mx-auto mt-3">
-        <!-- Guestbook: Form - Input - Label -->
-        <label for="message"
-            class="ml-4 text-xs bg-white rounded-t-xl w-max px-2 text-[#32214d] py-[2px] font-semibold -mb-1">Message
-            <span class="text-red-500">*</span></label>
-        <!-- Guestbook: Form - Input - Textarea -->
-        <textarea wire:model.live="message" name="message" id="message" placeholder="Enter your message here..."
-            cols="30" rows="3" class="text-[#32214d] border-none rounded-xl focus:outline-none focus:ring-0"
-            required></textarea>
+    <div class="relative w-full max-w-4xl mx-auto mt-3">
+        <div class="flex flex-col" wire:ignore>
+            <!-- Guestbook: Form - Textarea - Label -->
+            <label for="message"
+                class="ml-4 text-xs bg-white rounded-t-xl w-max px-2 text-[#32214d] py-[2px] font-semibold -mb-1">Message
+                <span class="text-red-500">*</span></label>
+            <!-- Guestbook: Form - Textarea -->
+            <textarea wire:model="message" name="message" id="message" placeholder="Enter your message here..." cols="30"
+                rows="3" class="text-[#32214d] border-none rounded-xl focus:outline-none focus:ring-0"></textarea>
+            <!-- Guestbook: Form - Textarea - Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="absolute w-5 h-5 text-[#32214d] top-6 right-2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+            </svg>
+        </div>
         @error('message')
             <span class="mt-1 text-sm font-semibold text-pink-500 drop-shadow">{{ $message }}</span>
         @enderror
-        <!-- Guestbook: Form - Input - Icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="absolute w-5 h-5 text-[#32214d] top-6 right-2">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
-        </svg>
     </div>
 
     <!-- Guestbook: Form - Recaptcha -->
@@ -101,27 +102,20 @@
                 });
             };
 
-            window.addEventListener('livewire:init', function() {
-                // Initialize Splide on page load
-                initTinyMCE();
-
-                // Listen for Livewire morph.updated event and update the Splide slider
-                Livewire.hook('morph.updated', ({
-                    el,
-                    component
-                }) => {
-                    initTinyMCE();
-                })
-            });
-
-            function initTinyMCE() {
+            document.addEventListener('DOMContentLoaded', (event) => {
+                // TinyMCE
                 tinymce.init({
                     selector: "#message",
                     plugins: "emoticons autoresize",
                     toolbar: "emoticons",
                     toolbar_location: "bottom",
                     menubar: false,
-                    statusbar: false
+                    statusbar: false,
+                    setup: function(editor) {
+                        editor.on('change', function(e) {
+                            @this.set('message', editor.getContent());
+                        });
+                    },
                 });
 
                 // Hide Require Domain Notification
@@ -129,7 +123,7 @@
                     $('.tox-notifications-container').removeAttr('style');
                     $('.tox-notifications-container').hide();
                 }, 2000);
-            }
+            });
         </script>
     @endpush
 </form>
