@@ -96,8 +96,40 @@
     @push('js')
         <script>
             window.recaptchaCallback = function(response) {
-                Livewire.dispatch('recaptchaResponse', {response: response});
+                Livewire.dispatch('recaptchaResponse', {
+                    response: response
+                });
             };
+
+            window.addEventListener('livewire:init', function() {
+                // Initialize Splide on page load
+                initTinyMCE();
+
+                // Listen for Livewire morph.updated event and update the Splide slider
+                Livewire.hook('morph.updated', ({
+                    el,
+                    component
+                }) => {
+                    initTinyMCE();
+                })
+            });
+
+            function initTinyMCE() {
+                tinymce.init({
+                    selector: "#message",
+                    plugins: "emoticons autoresize",
+                    toolbar: "emoticons",
+                    toolbar_location: "bottom",
+                    menubar: false,
+                    statusbar: false
+                });
+
+                // Hide Require Domain Notification
+                setTimeout(() => {
+                    $('.tox-notifications-container').removeAttr('style');
+                    $('.tox-notifications-container').hide();
+                }, 2000);
+            }
         </script>
     @endpush
 </form>
