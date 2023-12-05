@@ -124,6 +124,10 @@
                     $('.tox-notifications-container').hide();
                 }, 2000);
             });
+
+            $wire.on('guestbooks', () => {
+                tinymce.get('#message').setContent('');
+            });
         </script>
     @endpush
 </form>
