@@ -13,7 +13,7 @@
                                 clip-rule="evenodd" />
                         </svg>
                         <h3 class="text-3xl font-parisienne text-[#32214d]">{{ $guestbook->name }}</h3>
-                        <p class="text-center text-gray-500 line-clamp-6">{!! $guestbook->message !!}</p>
+                        <div class="text-center text-gray-500 line-clamp-6">{!! $guestbook->message !!}</div>
                     </div>
                 @endforeach
             </div>
