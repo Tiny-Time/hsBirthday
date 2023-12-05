@@ -127,7 +127,7 @@
 
             document.addEventListener('livewire:init', () => {
                 Livewire.on('guestbooks', (event) => {
-                    tinymce.get('#message').setContent('');
+                    tinymce.get('message').setContent('');
                 });
             });
         </script>
