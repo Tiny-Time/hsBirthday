@@ -125,8 +125,10 @@
                 }, 2000);
             });
 
-            $wire.on('guestbooks', () => {
-                tinymce.get('#message').setContent('');
+            document.addEventListener('livewire:init', () => {
+                Livewire.on('guestbooks', (event) => {
+                    tinymce.get('#message').setContent('');
+                });
             });
         </script>
     @endpush
