@@ -48,7 +48,7 @@
                                             <img id="reaction_{{ $guestbook->id }}"
                                                 src="{{ Vite::asset('resources/images/' . $guestbook->reactions->where('user_ip', $user_ip)->first()->emoji . '.gif') }}"
                                                 alt="{{ $guestbook->reactions->where('user_ip', $user_ip)->first()->emoji }} emoji"
-                                                userIP = "{{ $guestbook->reactions->where('user_ip', $user_ip)->first()->user_ip }}"
+                                                userip = "{{ $guestbook->reactions->where('user_ip', $user_ip)->first()->user_ip }}"
                                                 width="30" height="30"
                                                 class="{{ !empty($guestbook->reactions->where('user_ip', $user_ip)->first()) ? 'call-existing-ip' : '' }}"
                                                 @if ($guestbook->reactions->where('user_ip', $user_ip)->first()->emoji == 'care') style="margin: 2px; width: 22px;" @endif>
@@ -170,7 +170,7 @@
 
             function existingIP(elem) {
                 var post_id = elem.id.split('_')[1];
-                var user_ip = elem.getAttribute('userIP');
+                var user_ip = elem.getAttribute('userip');
                 var emoji = elem.alt.split(' ')[0];
 
                 const storedReactionsKey = `reactions_${user_ip}_${post_id}`;
