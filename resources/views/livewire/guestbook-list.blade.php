@@ -125,7 +125,7 @@
                 reaction.parentNode.replaceChild(newImage, reaction);
             }
 
-            const user_ip = '{{ $user_ip }}';
+            const user_ip = localStorage.getItem('user_ip');
 
             // Retrieve existing reactions from local storage based on post_id
             const storedReactionsKey = `reactions_${user_ip}_${post_id}`;
@@ -177,11 +177,27 @@
                 const storedReactions = localStorage.getItem(storedReactionsKey) ? JSON.parse(localStorage.getItem(
                     storedReactionsKey)) : {};
 
-                if(user_ip == '{{ $user_ip }}'){
+                if (user_ip == localStorage.getItem('user_ip')) {
                     storedReactions[user_ip] = emoji;
                     localStorage.setItem(storedReactionsKey, JSON.stringify(storedReactions));
                 }
             }
         });
+
+        // Function to fetch user IP and store it globally
+        async function fetchAndStoreUserIP() {
+            try {
+                const response = await fetch('https://api.ipify.org/?format=json');
+                const data = await response.json();
+
+                // Store the user's IP globally (you can use localStorage, sessionStorage, or a global variable)
+                localStorage.setItem('user_ip', data.ip);
+            } catch (error) {
+                console.error('Error fetching user IP:', error);
+            }
+        }
+
+        // Call the function to fetch and store user IP
+        fetchAndStoreUserIP();
     </script>
 </div>
