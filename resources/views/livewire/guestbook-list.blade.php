@@ -128,7 +128,7 @@
             const user_ip = '{{ $user_ip }}';
 
             // Retrieve existing reactions from local storage based on post_id
-            const storedReactionsKey = `reactions_${post_id}`;
+            const storedReactionsKey = `reactions_${user_ip}_${post_id}`;
             const storedReactions = localStorage.getItem(storedReactionsKey) ? JSON.parse(localStorage.getItem(
                 storedReactionsKey)) : {};
 
@@ -173,7 +173,7 @@
                 var user_ip = elem.getAttribute('userIP');
                 var emoji = elem.alt.split(' ')[0];
 
-                const storedReactionsKey = `reactions_${post_id}`;
+                const storedReactionsKey = `reactions_${user_ip}_${post_id}`;
                 const storedReactions = localStorage.getItem(storedReactionsKey) ? JSON.parse(localStorage.getItem(
                     storedReactionsKey)) : {};
 
