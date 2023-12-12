@@ -1,6 +1,26 @@
 <div>
     <h3 class="mt-4 font-bold text-center md:text-2xl">{{ count($guestbooks) }} People wrote to us:</h3>
     <div class="w-full max-w-4xl mx-auto mt-4 splide">
+        @php
+            function getIpAddress()
+            {
+                return empty($_SERVER['HTTP_CLIENT_IP']) ? (empty($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['REMOTE_ADDR'] : $_SERVER['HTTP_X_FORWARDED_FOR']) : $_SERVER['HTTP_CLIENT_IP'];
+            }
+
+            function getRealIpAddr()
+            {
+                if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                    //check ip from share internet
+                    $ip = $_SERVER['HTTP_CLIENT_IP'];
+                } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                    //to check ip is pass from proxy
+                    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+                } else {
+                    $ip = $_SERVER['REMOTE_ADDR'];
+                }
+                return $ip;
+            }
+        @endphp
         <div class="splide__track">
             <div class="splide__list">
                 @foreach ($guestbooks as $guestbook)
@@ -44,16 +64,16 @@
                                     </div>
                                     <button class="rounded-3xl border-2 text-black flex items-center p-[1px] h-[30px]">
                                         <span class="sr-only">Reaction</span>
-                                        @if (!empty($guestbook->reactions->where('user_ip', $user_ip)->first()))
+                                        @if (!empty($guestbook->reactions->where('user_ip', getRealIpAddr())->first()))
                                             <img id="reaction_{{ $guestbook->id }}"
-                                                src="{{ Vite::asset('resources/images/' . $guestbook->reactions->where('user_ip', $user_ip)->first()->emoji . '.gif') }}"
-                                                alt="{{ $guestbook->reactions->where('user_ip', $user_ip)->first()->emoji }} emoji"
-                                                userip = "{{ $guestbook->reactions->where('user_ip', $user_ip)->first()->user_ip }}"
+                                                src="{{ Vite::asset('resources/images/' . $guestbook->reactions->where('user_ip', getRealIpAddr())->first()->emoji . '.gif') }}"
+                                                alt="{{ $guestbook->reactions->where('user_ip', getRealIpAddr())->first()->emoji }} emoji"
+                                                userip = "{{ $guestbook->reactions->where('user_ip', getRealIpAddr())->first()->user_ip }}"
                                                 width="30" height="30"
-                                                class="{{ !empty($guestbook->reactions->where('user_ip', $user_ip)->first()) ? 'call-existing-ip' : '' }}"
-                                                @if ($guestbook->reactions->where('user_ip', $user_ip)->first()->emoji == 'care') style="margin: 2px; width: 22px;" @endif>
+                                                class="{{ !empty($guestbook->reactions->where('user_ip', getRealIpAddr())->first()) ? 'call-existing-ip' : '' }}"
+                                                @if ($guestbook->reactions->where('user_ip', getRealIpAddr())->first()->emoji == 'care') style="margin: 2px; width: 22px;" @endif>
                                         @endif
-                                        @if (empty($guestbook->reactions->where('user_ip', $user_ip)->first()))
+                                        @if (empty($guestbook->reactions->where('user_ip', getRealIpAddr())->first()))
                                             <svg id="reaction_{{ $guestbook->id }}" class="fill-[#ffd871] w-6 h-6"
                                                 xmlns="http://www.w3.org/2000/svg" fill="fillCurrent"
                                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="#000">
