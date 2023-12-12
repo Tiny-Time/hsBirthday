@@ -40,3 +40,12 @@ body {
         background-position: top;
     }
 }
+
+
+.splide__arrow--next{
+    right: -1em;
+}
+
+.splide__arrow--prev{
+    left: -1em;
+}

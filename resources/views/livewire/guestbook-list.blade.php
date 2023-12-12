@@ -1,7 +1,7 @@
 <div>
     <h3 class="mt-4 font-bold text-center md:text-2xl">{{ count($guestbooks) }} People wrote to us:</h3>
     <div class="w-full max-w-4xl mx-auto mt-4 splide">
-        <div class="splide__track !overflow-visible">
+        <div class="splide__track !overflow-y-visible">
             <div class="splide__list">
                 @foreach ($guestbooks as $guestbook)
                     <div
@@ -71,67 +71,85 @@
                                 </div>
                                 <div class="relative">
                                     <div class="group">
-                                        <p class="font-semibold text-gray-500 cursor-pointer">{{ count($guestbook->reactions) }}
+                                        <p class="font-semibold text-gray-500 cursor-pointer">
+                                            {{ count($guestbook->reactions) }}
                                             {{ count($guestbook->reactions) > 1 ? 'reactions' : 'reaction' }}</p>
-                                        <div
-                                            class="absolute right-0 z-50 flex-col hidden py-1 pl-2 bg-white min-w-max drop-shadow group-hover:flex bottom-full rounded-xl">
-                                            @if (!empty($guestbook->reactions->where('emoji', 'like')->first()))
-                                                <div class="flex items-center gap-2">
-                                                    <p class="font-semibold text-gray-500">
-                                                        {{ count($guestbook->reactions->where('emoji', 'like')) }}</p>
-                                                    <img src="{{ Vite::asset('resources/images/like.gif') }}"
-                                                        alt="Like emoji" width="40" height="40" class="">
-                                                </div>
-                                            @endif
-                                            @if (!empty($guestbook->reactions->where('emoji', 'love')->first()))
-                                                <div class="flex items-center gap-2">
-                                                    <p class="font-semibold text-gray-500">{{ count($guestbook->reactions->where('emoji', 'love')) }}</p>
-                                                    <img src="{{ Vite::asset('resources/images/love.gif') }}"
-                                                        alt="Love emoji" width="40" height="40"
-                                                        class="">
-                                                </div>
-                                            @endif
-                                            @if (!empty($guestbook->reactions->where('emoji', 'haha')->first()))
-                                                <div class="flex items-center gap-2">
-                                                    <p class="font-semibold text-gray-500">{{ count($guestbook->reactions->where('emoji', 'haha')) }}</p>
-                                                    <img src="{{ Vite::asset('resources/images/haha.gif') }}"
-                                                        alt="Haha emoji" width="40" height="40"
-                                                        class="">
-                                                </div>
-                                            @endif
-                                            @if (!empty($guestbook->reactions->where('emoji', 'care')->first()))
-                                                <div class="flex items-center gap-2">
-                                                    <p class="font-semibold text-gray-500">{{ count($guestbook->reactions->where('emoji', 'care')) }}</p>
-                                                    <img src="{{ Vite::asset('resources/images/care.gif') }}"
-                                                        alt="Care emoji" width="30" height="27"
-                                                        class="h-[27px] w-[27px] ml-[5px] ">
-                                                </div>
-                                            @endif
-                                            @if (!empty($guestbook->reactions->where('emoji', 'wow')->first()))
-                                                <div class="flex items-center gap-2">
-                                                    <p class="font-semibold text-gray-500">{{ count($guestbook->reactions->where('emoji', 'wow')) }}</p>
-                                                    <img src="{{ Vite::asset('resources/images/wow.gif') }}"
-                                                        alt="Wow emoji" width="40" height="40"
-                                                        class="">
-                                                </div>
-                                            @endif
-                                            @if (!empty($guestbook->reactions->where('emoji', 'sad')->first()))
-                                                <div class="flex items-center gap-2">
-                                                    <p class="font-semibold text-gray-500">{{ count($guestbook->reactions->where('emoji', 'sad')) }}</p>
-                                                    <img src="{{ Vite::asset('resources/images/sad.gif') }}"
-                                                        alt="Sad emoji" width="40" height="40"
-                                                        class="">
-                                                </div>
-                                            @endif
-                                            @if (!empty($guestbook->reactions->where('emoji', 'angry')->first()))
-                                                <div class="flex items-center gap-2">
-                                                    <p class="font-semibold text-gray-500">{{ count($guestbook->reactions->where('emoji', 'angry')) }}</p>
-                                                    <img src="{{ Vite::asset('resources/images/angry.gif') }}"
-                                                        alt="Angry emoji" width="40" height="40"
-                                                        class="">
-                                                </div>
-                                            @endif
-                                        </div>
+
+                                        @if (!$guestbook->reactions->isEmpty())
+                                            <div
+                                                class="absolute right-0 z-50 flex-col hidden py-1 pl-2 bg-white min-w-max drop-shadow group-hover:flex bottom-full rounded-xl">
+                                                @if (!empty($guestbook->reactions->where('emoji', 'like')->first()))
+                                                    <div class="flex items-center gap-2">
+                                                        <p class="font-semibold text-gray-500">
+                                                            {{ count($guestbook->reactions->where('emoji', 'like')) }}
+                                                        </p>
+                                                        <img src="{{ Vite::asset('resources/images/like.gif') }}"
+                                                            alt="Like emoji" width="40" height="40"
+                                                            class="">
+                                                    </div>
+                                                @endif
+                                                @if (!empty($guestbook->reactions->where('emoji', 'love')->first()))
+                                                    <div class="flex items-center gap-2">
+                                                        <p class="font-semibold text-gray-500">
+                                                            {{ count($guestbook->reactions->where('emoji', 'love')) }}
+                                                        </p>
+                                                        <img src="{{ Vite::asset('resources/images/love.gif') }}"
+                                                            alt="Love emoji" width="40" height="40"
+                                                            class="">
+                                                    </div>
+                                                @endif
+                                                @if (!empty($guestbook->reactions->where('emoji', 'haha')->first()))
+                                                    <div class="flex items-center gap-2">
+                                                        <p class="font-semibold text-gray-500">
+                                                            {{ count($guestbook->reactions->where('emoji', 'haha')) }}
+                                                        </p>
+                                                        <img src="{{ Vite::asset('resources/images/haha.gif') }}"
+                                                            alt="Haha emoji" width="40" height="40"
+                                                            class="">
+                                                    </div>
+                                                @endif
+                                                @if (!empty($guestbook->reactions->where('emoji', 'care')->first()))
+                                                    <div class="flex items-center gap-2">
+                                                        <p class="font-semibold text-gray-500">
+                                                            {{ count($guestbook->reactions->where('emoji', 'care')) }}
+                                                        </p>
+                                                        <img src="{{ Vite::asset('resources/images/care.gif') }}"
+                                                            alt="Care emoji" width="30" height="27"
+                                                            class="h-[27px] w-[27px] ml-[5px] ">
+                                                    </div>
+                                                @endif
+                                                @if (!empty($guestbook->reactions->where('emoji', 'wow')->first()))
+                                                    <div class="flex items-center gap-2">
+                                                        <p class="font-semibold text-gray-500">
+                                                            {{ count($guestbook->reactions->where('emoji', 'wow')) }}
+                                                        </p>
+                                                        <img src="{{ Vite::asset('resources/images/wow.gif') }}"
+                                                            alt="Wow emoji" width="40" height="40"
+                                                            class="">
+                                                    </div>
+                                                @endif
+                                                @if (!empty($guestbook->reactions->where('emoji', 'sad')->first()))
+                                                    <div class="flex items-center gap-2">
+                                                        <p class="font-semibold text-gray-500">
+                                                            {{ count($guestbook->reactions->where('emoji', 'sad')) }}
+                                                        </p>
+                                                        <img src="{{ Vite::asset('resources/images/sad.gif') }}"
+                                                            alt="Sad emoji" width="40" height="40"
+                                                            class="">
+                                                    </div>
+                                                @endif
+                                                @if (!empty($guestbook->reactions->where('emoji', 'angry')->first()))
+                                                    <div class="flex items-center gap-2">
+                                                        <p class="font-semibold text-gray-500">
+                                                            {{ count($guestbook->reactions->where('emoji', 'angry')) }}
+                                                        </p>
+                                                        <img src="{{ Vite::asset('resources/images/angry.gif') }}"
+                                                            alt="Angry emoji" width="40" height="40"
+                                                            class="">
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
