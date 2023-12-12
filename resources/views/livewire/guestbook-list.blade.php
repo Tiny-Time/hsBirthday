@@ -71,9 +71,9 @@
                                 </div>
                                 <div class="relative">
                                     <div class="group">
-                                        <p class="font-semibold text-gray-500 cursor-pointer">
+                                        <button class="px-4 py-2 font-semibold text-gray-500 shadow rounded-3xl">
                                             {{ count($guestbook->reactions) }}
-                                            {{ count($guestbook->reactions) > 1 ? 'reactions' : 'reaction' }}</p>
+                                            {{ count($guestbook->reactions) > 1 ? 'reactions' : 'reaction' }}</button>
 
                                         @if (!$guestbook->reactions->isEmpty())
                                             <div
