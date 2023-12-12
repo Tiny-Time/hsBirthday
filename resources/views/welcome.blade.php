@@ -27,8 +27,7 @@
     {!! NoCaptcha::renderJs() !!}
 
     {{-- TinyMCE --}}
-    <script src="https://cdn.tiny.cloud/1/qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc/tinymce/6/tinymce.min.js">
-    </script>
+    <script src="https://cdn.tiny.cloud/1/3i5otce98dquqhd5qvejwcfh6qrn125fnncjwgnu59l9ku2n/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 
 <body class="px-4 py-5 antialiased text-white font-lato" x-data="{ openCreateRSVPModal: false, openShareModal: false }">
