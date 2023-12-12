@@ -43,9 +43,9 @@ body {
 
 
 .splide__arrow--next{
-    right: -1em;
+    right: -1em !important;
 }
 
 .splide__arrow--prev{
-    left: -1em;
+    left: -1em !important;
 }
