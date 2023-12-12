@@ -49,6 +49,7 @@
                                                 src="{{ Vite::asset('resources/images/' . $guestbook->reactions->where('user_ip', $user_ip)->first()->emoji . '.gif') }}"
                                                 alt="{{ $guestbook->reactions->where('user_ip', $user_ip)->first()->emoji }} emoji"
                                                 width="30" height="30"
+                                                class="{{ !empty($guestbook->reactions->where('user_ip', $user_ip)->first()) ? 'call-existing-ip' : '' }}"
                                                 @if ($guestbook->reactions->where('user_ip', $user_ip)->first()->emoji == 'care') style="margin: 2px; width: 22px;" @endif>
                                         @endif
                                         @if (empty($guestbook->reactions->where('user_ip', $user_ip)->first()))
@@ -158,5 +159,25 @@
                 @this.save('react')
             }
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const elements = document.querySelectorAll('.call-existing-ip');
+
+            elements.forEach(element => {
+                existingIP(element);
+            });
+
+            function existingIP(elem) {
+                var post_id = elem.id.split('_')[1];
+                var emoji = elem.alt.split(' ')[0];
+
+                const storedReactionsKey = `reactions_${post_id}`;
+                const storedReactions = localStorage.getItem(storedReactionsKey) ? JSON.parse(localStorage.getItem(
+                    storedReactionsKey)) : {};
+
+                storedReactions['{{ $user_ip }}'] = emoji;
+                localStorage.setItem(storedReactionsKey, JSON.stringify(storedReactions));
+            }
+        });
     </script>
 </div>
