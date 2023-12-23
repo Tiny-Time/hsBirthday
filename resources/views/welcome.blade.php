@@ -40,6 +40,7 @@
         breathless!
     </h2>
 
+
     <!-- Event Timer Component -->
     <div class="mt-4 toz-timer">
         <!-- Days -->
@@ -82,10 +83,12 @@
     </div>
 
     <!-- RSVP -->
+
     <div class="flex justify-center gap-2 mt-4">
         <button type="button" @click="$store.openCreateRSVPModal.toggle()"
             class="px-4 py-2 uppercase bg-[#a6ce96] border-[#32214d] border-2 rounded-3xl text-sm text-[#32214d] font-bold">rsvp</button>
-        <button type="button" @click="$store.openShareModal.toggle()" class="bg-[#a6ce96] border-[#32214d] border-2 p-2 rounded-full text-[#32214d]">
+        <button type="button" @click="$store.openShareModal.toggle()"
+            class="bg-[#a6ce96] border-[#32214d] border-2 p-2 rounded-full text-[#32214d]">
             <span class="sr-only">Share</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                 <path fill-rule="evenodd"
@@ -94,10 +97,27 @@
             </svg>
         </button>
     </div>
+    <!-- Event Details -->
+    <div class="mt-4 text-center text-white">
+        <h1 class="text-4xl font-bold text-center text-black md:text-5xl font-amaticSC">Event Details</h1>
+        <p class="mt-2"><strong>Check-In Time:</strong> 6:00 PM</p>
+        <p><strong>Party End Time:</strong> 8:00 PM</p>
 
+        <div>
+            <p><strong>Location:</strong></p>
+            <p>Sky Zone Woodbridge</p>
+            <p>14555 Potomac Mills Rd</p>
+            <p>Woodbridge, VA 22192</p>
+        </div>
+
+        <p><strong>Please RSVP by contacting:</strong></p>
+        <p>SAM OR CHEMICAL ALI</p>
+        <p>Phone: 703-307-9673, 571-264-5742</p>
+        <p>Email: <a href="mailto:WUTANGSISTA@YAHOO.COM">WUTANGSISTA@YAHOO.COM</a></p>
+    </div>
     <!-- Line -->
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-full max-w-sm mx-auto mt-4 fill-[#32214d]" height="12" viewBox="0 0 690 12"
-        fill="fillCurrent">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-full max-w-sm mx-auto mt-4 fill-[#32214d]" height="12"
+        viewBox="0 0 690 12" fill="fillCurrent">
         <path
             d="M0.163249 6C0.163249 8.94552 2.55106 11.3333 5.49658 11.3333C8.4421 11.3333 10.8299 8.94552 10.8299 6C10.8299 3.05448 8.4421 0.666667 5.49658 0.666667C2.55106 0.666667 0.163249 3.05448 0.163249 6ZM679.17 6C679.17 8.94552 681.558 11.3333 684.503 11.3333C687.449 11.3333 689.837 8.94552 689.837 6C689.837 3.05448 687.449 0.666667 684.503 0.666667C681.558 0.666667 679.17 3.05448 679.17 6ZM5.49658 7H684.503V5H5.49658V7Z"
             fill="fillCurrent" />
