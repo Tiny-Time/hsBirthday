@@ -26,7 +26,7 @@
     @vite('resources/css/app.css')
 
     <!-- Icon -->
-    <link rel="shortcut icon" href="{{ Vite::asset('resources/images/rose.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ Vite::asset('resources/images/cake.png') }}" type="image/x-icon">
 </head>
 
 <body class="antialiased">

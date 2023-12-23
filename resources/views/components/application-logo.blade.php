@@ -1,4 +1,4 @@
-<div class="flex gap-2 text-lg font-semibold text-gray-800 font-parisienne">
-    {{ __('UK') }}
-    <img src="{{ Vite::asset('resources/images/rose.png') }}" alt="RSVP" class="w-6" {{ $attributes }}>
+<div class="flex items-center text-4xl font-semibold text-gray-800 font-amaticSC">
+    {{ __('HS') }}
+    <img src="{{ Vite::asset('resources/images/cake.png') }}" alt="RSVP" class="w-12" {{ $attributes }}>
 </div>

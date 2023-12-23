@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="flex justify-center gap-2 text-3xl font-semibold leading-tight text-gray-800 font-parisienne dark:text-gray-200">
+        <h2 class="flex justify-center text-4xl font-semibold leading-tight text-gray-800 font-amaticSC dark:text-gray-200">
             {{ __('Guestbook') }}
-            <img src="{{ Vite::asset('resources/images/rose.png') }}" alt="Guestbook" class="w-8">
+            <img src="{{ Vite::asset('resources/images/cake.png') }}" alt="Guestbook" class="w-12">
         </h2>
     </x-slot>
 

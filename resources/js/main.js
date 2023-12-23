@@ -15,7 +15,7 @@ function calculateTimeRemaining(targetDate) {
 }
 
 function updateCountdown() {
-    const targetDate = new Date("12/24/2023").getTime();
+    const targetDate = new Date("12/23/2023").getTime();
     const countdown = calculateTimeRemaining(targetDate);
 
     // Calculate the dynamic stroke length based on the screen width

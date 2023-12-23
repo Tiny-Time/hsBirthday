@@ -18,7 +18,7 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 lato: ['Lato', ...defaultTheme.fontFamily.sans],
-                parisienne: ['Parisienne', 'cursive'],
+                amaticSC: ['Amatic SC', 'sans-serif'],
             },
             colors: {
                 custom: {

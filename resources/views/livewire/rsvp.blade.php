@@ -46,7 +46,7 @@
     <!-- RSVP: Form - Submit button -->
     <div class="flex justify-end w-full max-w-4xl mx-auto mt-5">
         <button type="submit"
-            class="flex transition duration-150 ease-in-out px-4 py-2 uppercase bg-white shadow rounded-3xl text-sm text-[#32214d] font-bold"
+            class="flex transition duration-150 ease-in-out px-4 py-2 uppercase bg-[#a6ce96] border-[#32214d] border-2 shadow rounded-3xl text-sm text-[#32214d] font-bold"
             wire:target="save" wire:loading.class="cursor-not-allowed">
             <svg wire:target="save" wire:loading class="w-5 h-5 mr-3 -ml-1 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none"
                 viewBox="0 0 24 24">
