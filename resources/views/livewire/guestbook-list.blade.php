@@ -6,6 +6,7 @@
                 @foreach ($guestbooks as $guestbook)
                     <div
                         class="flex flex-col items-stretch justify-between w-full max-w-sm gap-2 py-3 mx-auto text-center bg-white rounded-lg splide__slide">
+                        <p class="px-3 text-gray-500 text-end">{{ $guestbook->created_at->diffForHumans() }}</p>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             class="h-16 mx-auto text-gray-400 before:w-16 ">
                             <path fill-rule="evenodd"
@@ -13,7 +14,7 @@
                                 clip-rule="evenodd" />
                         </svg>
                         <h3 class="text-3xl font-parisienne text-[#32214d] px-3">{{ $guestbook->name }}</h3>
-                        <div class="px-3 text-center text-gray-500 line-clamp-6">{!! $guestbook->message !!}</div>
+                        <div class="px-3 overflow-y-auto text-center text-gray-500 h-36">{!! $guestbook->message !!}</div>
                         <div class="relative">
                             <div class="flex items-center justify-between px-3">
                                 <div class="py-1 group w-max">
